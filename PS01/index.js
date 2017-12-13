@@ -14,12 +14,12 @@ var albersProjection = d3.geoAlbersUsa()  //tell it which projection to use
     .translate([(width/2), (height/2)]);  //set the center of the map to show up in the center of the screen
 
 //set up the path generator function to draw the map outlines
-var path = d3.geoPath()
+path = d3.geoPath()
     .projection(albersProjection);        //tell it to use the projection that we just made to convert lat/long to pixels
 
 
 //import the data from the .csv file
-d3.json('./cb_2016_us_state_20m.json'), function(dataIn){
+d3.json('./cb_2016_us_state_20m.json', function(dataIn){
 
     svg.selectAll("path")               //make empty selection
         .data(dataIn.features)          //bind to the features array in the map data

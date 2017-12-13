@@ -48,6 +48,3 @@ d3.json('./cb_2016_us_state_20m.json', function(dataIn){
 
 
   });
-
-
-

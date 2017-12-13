@@ -27,9 +27,10 @@ svg.append("g")
 //Tell the function how to calculate x and y positions for each point, using your scale functions and the values stored in the data
 //(it doesn't matter that the data hasn't loaded yet, because this function won't run until you call it, and then it will
 //use the data that you pass it using d3)
-var makeLine = d3.line()
+var makeArea = d3.area()
     .x(function(d) { console.log(d); return scaleX(d.age); })
-    .y(function(d) { return scaleY(d.total); });
+    .y0(scaleY(0))
+    .y1(function(d) { return scaleY(d.total); });
 
 
 //import the data from the .csv file
@@ -59,13 +60,10 @@ d3.csv('./incomeData.csv', function(dataIn){
                                //skipping .enter(), because we don't want a new path for every point in the dataset!
         .datum(dataIn)         //datum (not data!) tells d3 that all of the data belongs to a single line
         .attr("class", "line")
-        .attr("d", makeLine)   //the "d" attribute is just part of how the path element is defined, like "cx" or "cy" for a circle.
+        .attr("d", makeArea)   //the "d" attribute is just part of how the path element is defined, like "cx" or "cy" for a circle.
                                //it calls the makeLine function above, and hands it sets of points that the path should contain.
-        .attr('fill','none')
+        .attr('fill','blue')
         .attr('stroke','blue')
         .attr('stroke-width',3);
 
 });
-
-
-
